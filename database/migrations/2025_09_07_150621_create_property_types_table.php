@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('property_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');       // e.g., Residential, Apartment, Office
+            $table->id(); // BIGINT UNSIGNED
+            $table->string('name');
             $table->string('slug')->unique();
             $table->foreignId('parent_id')->nullable()
                   ->constrained('property_types')->nullOnDelete();
             $table->unsignedInteger('sort_order')->default(0);
-            $table->json('meta')->nullable(); // future (icons, rules)
+            $table->json('meta')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

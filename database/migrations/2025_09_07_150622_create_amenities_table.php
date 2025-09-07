@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('amenities', function (Blueprint $table) {
-           $table->foreignId('amenity_id')->constrained()->cascadeOnDelete();
-    $table->foreignId('property_id')->constrained()->cascadeOnDelete();
-    $table->primary(['amenity_id','property_id']);
+           $table->id(); // unsigned BIGINT
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
